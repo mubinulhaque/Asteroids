@@ -15,13 +15,8 @@ public class ShipController : MonoBehaviour
     private float forwardForce = 0f; //The force currently applied onto the ship to move it forward
     private float turnRate = 0f; //The force currently applied onto the ship to turn it clockwise
 
-    //Prefabs
-    public GameObject bulletPrefab;
-
-    //Transforms
+    //Public Variables
     public Transform muzzle; //Where the bullets are shot from
-
-    //Other Public Variables
     public float movementSpeed = 3000f;
     public float turnSpeed = 1750f;
     #endregion
@@ -57,7 +52,7 @@ public class ShipController : MonoBehaviour
         if(context.performed) //If the button has been pressed
         {
             //Create a bullet at the muzzle of the ship in the same rotation as the ship
-            GameObject bullet = Object.Instantiate(bulletPrefab, muzzle.position, Quaternion.Euler(90, transform.rotation.eulerAngles.y, 0)) as GameObject;
+            GameObject bullet = Object.Instantiate(ObjectManager.instance.bulletPrefab, muzzle.position, Quaternion.Euler(90, transform.rotation.eulerAngles.y, 0)) as GameObject;
         }
     }
     #endregion

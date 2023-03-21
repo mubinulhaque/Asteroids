@@ -25,6 +25,12 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision) //Upon colliding with a collider
     {
+        if(collision.gameObject.GetComponent<Asteroid>()) //If the collider is an asteroid
+        {
+            Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
+            asteroid.removeHealth(transform.up);
+        }
+
         Destroy(gameObject);
     }
     #endregion
