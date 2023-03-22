@@ -11,10 +11,11 @@ public class UIManager : MonoBehaviour
 
     //Private Variables
     [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject nextLevelButton;
     #endregion
 
     #region Unity Methods
-    void Start()
+    void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
@@ -25,6 +26,16 @@ public class UIManager : MonoBehaviour
     public void showRestartButton()
     {
         restartButton.SetActive(true);
+    }
+
+    public void showNextLevelButton()
+    {
+        nextLevelButton.SetActive(true);
+    }
+
+    public void nextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void restartLevel()
