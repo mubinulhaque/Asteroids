@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -31,6 +32,15 @@ public class ShipController : MonoBehaviour
     {
         body.AddTorque(transform.up * turnRate * Time.fixedDeltaTime); //Turn the ship around the ship's y-axis
         body.AddForce(transform.forward * forwardForce * Time.fixedDeltaTime); //Move the ship along the ship's z-axis
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<Asteroid>() != null) //If the ship has collided with an asteroid
+        {
+            UIManager.instance.showRestartButton(); //Show the restart button
+            Destroy(gameObject); //Destroy the ship
+        }
     }
     #endregion
 
